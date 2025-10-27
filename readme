@@ -1,6 +1,6 @@
 # VideoGen
 
-Bu proje, YouTube videolarının altyazılarından yararlanarak OpenAI, Pexels ve YouTube API'leri ile otomatik video üretimi yapan bir komut satırı aracıdır.
+Bu proje, YouTube videolarının altyazılarından yararlanarak OpenAI, Pexels ve YouTube API'leri ile otomatik video üretimi yapan bir komut satırı aracıdır. Ayrıca kendi metin senaryolarınızı kullanarak YouTube bağlantısına ihtiyaç duymadan video üretimi yapabilirsiniz.
 
 ## Özellikler
 - Verilen YouTube URL'lerinden altyazı indirir.
@@ -25,13 +25,17 @@ export PEXELS_API_KEY="..."
 export YOUTUBE_CLIENT_SECRET="/path/to/client_secret.json"
 ```
 
-Ardından komutu çalıştırın:
+Ardından aşağıdaki komutlardan birini çalıştırın:
 
 ```bash
+# Var olan YouTube içeriğini yeniden kurgulamak için
 python main.py "https://www.youtube.com/watch?v=..." --prompt "Yeni video brifi" --project yeni_proje --render --upload
+
+# Kendi senaryonuzdan video üretmek için
+python main.py --script-file senaryo.txt --project senaryo_projesi --render
 ```
 
 - `--render` parametresi videoyu render eder.
 - `--upload` parametresi render edilen videoyu YouTube'a yükler.
 
-Render edilen video ve proje dosyaları `output/` dizininde, geçici veriler ise `working/` dizininde saklanır.
+Render edilen video ve proje dosyaları `output/` dizininde, geçici veriler ise `working/` dizininde saklanır. `--script-file` parametresi boş satırlar ile ayrılmış metin bloklarını bölümlere ayırarak her bölüm için seslendirme ve stok video eşlemesi yapar.
